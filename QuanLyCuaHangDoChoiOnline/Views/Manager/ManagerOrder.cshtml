@@ -1,0 +1,65 @@
+﻿@model IEnumerable<QuanLyCuaHangDoChoiOnline.Models.InfoOrder>
+
+@{
+    ViewData["Title"] = "ManagerOrder";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<h1>Quản lý đơn hàng</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã đơn hàng 
+            </th>
+            <th>
+                Họ tên 
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Tổng tiền 
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>Cập nhật trạng thái</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="DetailOrder" asp-route-id="@item.InfoOrderID">
+                    @item.InfoOrderID
+                </a>
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.TotalPrice
+            </td>
+            <td>
+                @item.Status
+            </td>
+            <td>
+                    <a asp-action="InfoOrderComplete" asp-route-id="@item.InfoOrderID">Thành công</a> |
+                    <br>
+                    <a asp-action="InfoOrderIncomplete" asp-route-id="@item.InfoOrderID">Đang xử lý</a>
+            </td>
+            <td>
+                    <a asp-action="EditOrder" asp-route-id="@item.InfoOrderID">Sửa</a> |
+                    <a asp-action="DetailOrder" asp-route-id="@item.InfoOrderID">Chi tiết</a> |
+                    <a asp-action="DeleteOrder" asp-route-id="@item.InfoOrderID">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

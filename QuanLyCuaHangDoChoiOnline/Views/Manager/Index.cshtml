@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<div id="main">
+    <h1>Quản lý</h1>
+    <section class="tiles">
+
+        <article class="style1">
+            <span class="image">
+               <a asp-action="ManagerToy"><img src="images/banner-1.jpg" alt="" width="300" height="325" /></a>
+            </span>
+            <a asp-action="ManagerToy">
+                <h2>
+                    Quản lý sản phẩm
+                </h2>
+            </a>
+        </article>
+        <article class="style1">
+            <span class="image">
+              <a asp-action="ManagerOrder"><img src="images/banner-2.jpg" alt="" width="300" height="325" /></a>
+            </span>
+            <a asp-action="ManagerOrder">
+                <h2>
+                    Quản lý đơn hàng
+                </h2>
+            </a>
+        </article>
+        @if (this.User.IsInRole("SuperAdmin"))
+        {
+            <article class="style1">
+                <span class="image">
+                   <a asp-action="ManagerAccount"><img src="images/banner-3.jpg" alt="" width="300" height="325" /></a>
+                </span>
+                <a asp-action="ManagerAccount">
+                    <h2>
+                        Quản lý tài khoản
+                    </h2>
+                </a>
+            </article>
+        }
+
+    </section>
+</div>

@@ -1,0 +1,79 @@
+﻿@using QuanLyCuaHangDoChoiOnline.Models
+@model dynamic
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div id="main">
+    <div class="inner">
+        <h1>@Model.toydetail.ToyName <span class="pull-right" style="color:red; opacity:0.6"><del></del>@string.Format("{0:N0} đ", Model.toydetail.Price)</span></h1>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="/images/@Model.toydetail.Image" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-sm-3">Loại:</div>
+                        @foreach (var type in Model.toytypeNAV)
+                        {
+                            if (type.ToyTypeID == Model.toydetail.ToyTypeID)
+                            {
+                                <div class="col-sm-9">@type.ToyTypeName</div>
+                                break;
+                            }
+                        }
+                        <div class="col-sm-3">Nhà sản xuất:</div>
+                        <div class="col-sm-9">@Model.toydetail.Brand</div>
+                    </div>
+                    <div class="row">
+                        <form asp-controller="Order" asp-action="AddToCart" id="add_to_cart">
+                            <div class="col-sm-8">
+                                <input hidden type="text" name="ToyID" value="@Model.toydetail.ToyID"/>
+                                <label class="control-label">Số lượng</label>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" name="quantity" id="quantity" value="1">
+                                            <span class="text-danger field-validation-error" id="add_to_cart_alert">Vui lòng nhập số lượng</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button type="submit" class="primary">Thêm vào giỏ hàng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">Mô tả:</div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-11">@Model.toydetail.Description</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container-fluid">
+            <h2>Sản phẩm khác</h2>
+            <section class="tiles">
+                @foreach (var item in Model.lstToy)
+                {
+                    <article class="style1">
+                        <span class="image">
+                            <a asp-controller="Toy" asp-action="Details" asp-route-ID="@item.ToyID"><img src="/images/@item.Image" width="300" height="325" alt="" /></a>
+                        </span>
+                        <a asp-controller="Toy" asp-action="Details" asp-route-ID="@item.ToyID">
+                            <h2>
+                                @item.ToyName
+                            </h2>
+                            <p><strong>@string.Format("{0:N0} đ", item.Price)</strong></p>
+                        </a>
+                    </article>
+                }
+            </section>
+        </div>
+    </div>
+</div>

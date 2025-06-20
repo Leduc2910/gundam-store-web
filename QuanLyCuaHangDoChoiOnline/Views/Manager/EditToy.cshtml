@@ -1,0 +1,71 @@
+﻿@using QuanLyCuaHangDoChoiOnline.Models
+@model dynamic
+
+@{
+    ViewData["Title"] = "EditToy";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<h2>Sửa thông tin đồ chơi</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <img src="/images/@Model.toy.Image" class="img-fluid" alt="">
+    </div>
+    <div class="col-md-8">
+        <form asp-action="EditToy" enctype="multipart/form-data">
+            <span data-valmsg-for="ToyName" class="text-danger field-validation-error" data-valmsg-replace="true">@ViewBag.ErrorMessage</span>
+            <div class="form-group">
+                <label for="ToyName" class="control-label">Tên đồ chơi </label>
+                <input name="ToyName" type="text" class="form-control" placeholder="Tên đồ chơi" value="@Model.toy.ToyName">
+            </div>
+            <div class="form-group">
+                <label for="ToyTypeID" class="control-label">Loại</label>
+                <select name="ToyTypeID" class="form-control">
+                    @foreach (var item in Model.toytypeNAV)
+                    {
+                        <option value="@item.ToyTypeID">@item.ToyTypeID - @item.ToyTypeName</option>
+                    }
+                </select>
+                <span data-valmsg-for="ToyTypeID" class="text-danger field-validation-error" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="Brand" class="control-label">Nhà sản xuất</label>
+                    <input name="Brand" type="text" class="form-control" placeholder="Nhà sản xuất" value="@Model.toy.Brand">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Image" class="control-label">Hình ảnh sản phẩm</label>
+                <input name="Image" type="file" accept="image/png, image/jpeg, image/jpg" class="form-control-file">
+            </div>
+            <div class="form-group">
+                <label for="Description" class="control-label">Mô tả</label>
+                <textarea name="Description" type="text" class="form-control" placeholder="Mô tả"> @Model.toy.Description</textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="Price" class="control-label">Giá</label>
+                    <input name="Price" type="number" class="form-control" value="@Model.toy.Price">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="Quantity" class="control-label">Số lượng</label>
+                    <input name="Quantity" type="number" class="form-control" value="@Model.toy.Quantity">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="Ordered" class="control-label">Số lượng đặt hàng</label>
+                    <input name="Ordered" type="number" class="form-control" value="@Model.toy.OrderedQuantity">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success">Lưu</button>
+            <br />
+            <hr />
+            <div>
+                <a class="button" asp-action="ManagerToy">Quay lại danh sách</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+

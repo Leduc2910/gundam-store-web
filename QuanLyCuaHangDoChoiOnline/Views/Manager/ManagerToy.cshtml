@@ -1,0 +1,66 @@
+﻿@model IEnumerable<QuanLyCuaHangDoChoiOnline.Models.Toy>
+
+@{
+    ViewData["Title"] = "ManagerToy";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<h1>Danh sách sản phẩm</h1>
+
+<p>
+    <a asp-action="CreateToy">Tạo mới sản phẩm</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã sản phẩm
+            </th>
+            <th>
+                Tên
+            </th>
+            <th>
+                Loại
+            </th>
+            <th>
+                Giá tiền
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Đã đặt hàng
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.ToyID
+            </td>
+            <td>
+                @item.ToyName
+            </td>
+            <td>
+                @item.ToyTypeID
+            </td>
+            <td>
+               @string.Format("{0:N0} đ", item.Price)
+            </td>
+                <td >
+                @item.Quantity
+            </td>
+                <td>
+                @item.OrderedQuantity
+            </td>
+            <td>
+                    <a asp-action="EditToy" asp-route-id="@item.ToyID">Sửa</a> |
+                    <a asp-action="DetailsToy" asp-route-id="@item.ToyID">Chi tiết</a> |
+                    <a asp-action="DeleteToy" asp-route-id="@item.ToyID">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

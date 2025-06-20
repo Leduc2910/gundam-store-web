@@ -1,0 +1,52 @@
+﻿@using QuanLyCuaHangDoChoiOnline.Models
+@model dynamic
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div id="main">
+    <div class="inner">
+        <div class="image main">
+            @{
+                string id = Model.toytype.ToyTypeID + ".jpg";
+                <img src="/images/@id" class="img-fluid" alt="" />
+                }
+        </div>
+        <h1>@Model.toytype.ToyTypeID  - @Model.toytype.ToyTypeName</h1>
+        <hr />
+        <section class="tiles">
+            @foreach (var item in Model.toytypelist)
+            {
+                <article class="style1">
+                    <span class="image">
+                        <a asp-controller="Toy" asp-action="Details" asp-route-ID="@item.ToyID"><img src="/images/@item.Image" width="300" height="325" alt="" /></a>
+                    </span>
+                    <a asp-controller="Toy" asp-action="Details" asp-route-ID="@item.ToyID">
+                        <h2>
+                            @item.ToyName
+                        </h2>
+                        <p><strong>@string.Format("{0:N0} đ",item.Price)</strong></p>
+                    </a>
+                </article>
+            }
+        </section>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="pagination">
+                    @for (int i = 1; i <= Model.maxpage; i++)
+                    {
+                        if (i == Model.currentpage)
+                        {
+                            <a href="/Toy/ToyType/@Model.toytype.ToyTypeID/@i" class="active">@i</a>
+                        }
+                        else
+                        {
+                            <a href="/Toy/ToyType/@Model.toytype.ToyTypeID/@i">@i</a>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+﻿@model QuanLyCuaHangDoChoiOnline.Models.Account
+
+@{
+    ViewData["Title"] = "DetailAccount";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<h1>Chi tiết tài khoản</h1>
+
+<div>
+    <h4>Tài khoản</h4>
+    <hr />
+    <div class="row">
+        <label class = "col-sm-2">
+            Username:
+        </label>
+        <div class = "col-sm-10">
+            @Model.UserName
+        </div>
+        <label class = "col-sm-2">
+            Họ tên:
+        </label>
+        <div class = "col-sm-10">
+            @Model.FullName
+        </div>
+        <label class = "col-sm-2">
+            Tuổi:
+        </label>
+        <div class = "col-sm-10">
+            @Model.Age
+        </div>
+        <label class = "col-sm-2">
+            Giới tính:
+        </label>
+        <div class="col-sm-10">
+            @if (Model.Gender == 1)
+            {
+                @:Nam
+            }
+            else
+            {
+                @:Nữ
+            }
+        </div>
+        <label class = "col-sm-2">
+            Địa chỉ:
+        </label>
+        <div class = "col-sm-10">
+            @Model.Address
+        </div>
+        <label class = "col-sm-2">
+            Email:
+        </label>
+        <div class = "col-sm-10">
+            @Model.Email
+        </div>
+        <label class = "col-sm-2">
+            Số điện thoại:
+        </label>
+        <div class = "col-sm-10">
+            @Model.Phone
+        </div>
+        <label class = "col-sm-2">
+            Quyền:
+        </label>
+        <div class="col-sm-10">
+            @if (Model.Authority == 1)
+            {
+                @:Admin
+            }
+            else if (Model.Authority == 2)
+            {
+                @:SuperAdmin
+            }
+            else if(Model.Authority == 0)
+            {
+                @:Customer
+            }
+        </div>
+    </div>
+</div>
+<div>
+    <a class="button" asp-controller="Manager" asp-action="EditAccount" asp-route-username="@Model.UserName">Sửa</a>
+    <br />
+    <a asp-action="ManagerAccount">Quay lại danh sách</a>
+</div>

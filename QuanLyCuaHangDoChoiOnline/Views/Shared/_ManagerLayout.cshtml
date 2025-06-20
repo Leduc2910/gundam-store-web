@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ToyJoy</title>
+    <link rel="shortcut icon" href="~/images/logo1.png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+
+    <noscript><link rel="stylesheet" href="~/css/noscript.css" /></noscript>
+
+</head>
+<body class="is-preload">
+    <div id="wrapper">
+        <header id="header">
+            <div class="inner">
+
+                <!-- Logo -->
+                <a asp-controller="Home" asp-action="Index" class="logo">
+                    <img src="~/images/logo1.png" width="15%"/><span class="title">Gundam Online Shop</span>
+                </a>
+
+                <!-- Nav -->
+                <nav>
+                    <ul>
+                        <li><a href="#menu" style="padding-top:170px">Menu</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </header>
+        <!-- Menu -->
+        <nav id="menu">
+            <h2>Menu</h2>
+            <h4>@User.Identity.Name</h4>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index" class="active">Trang chủ</a></li>
+
+                <li><a asp-controller="Manager" asp-action="Index">Quản lý</a></li>
+
+                <li><a asp-controller="Account" asp-action="Logout">Đăng xuất</a></li>
+
+            </ul>
+        </nav>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer id="footer">
+            <div class="inner">
+                <ul class="copyright">
+                    <li>Copyright © 2023 Toy Store Online</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/jquery.scrolly.min.js"></script>
+    <script src="~/js/jquery.scrollex.min.js"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

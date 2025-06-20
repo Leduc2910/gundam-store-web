@@ -1,0 +1,61 @@
+﻿@model QuanLyCuaHangDoChoiOnline.Models.Toy
+
+@{
+    ViewData["Title"] = "DeleteToy";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<div>
+    <h2>Bạn có muốn xóa sản phẩm này không?</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/images/@Model.Image" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <label class="col-sm-3">
+                    Mã sản phẩm: 
+                </label>
+                <div class="col-sm-8">
+                    @Model.ToyID
+                </div>
+                <label class="col-sm-3">
+                    Tên sản phẩm:
+                </label>
+                <div class="col-sm-8">
+                    @Model.ToyName
+                </div>
+                <label class="col-sm-3">
+                    Loại: 
+                </label>
+                <div class="col-sm-8">
+                    @Model.ToyTypeID
+                </div>
+                <label class="col-sm-3">
+                    Nhà sản xuất:
+                </label>
+                <div class="col-sm-8">
+                    @Model.Brand
+                </div>
+                <label class="col-sm-3">
+                    Mô tả:
+                </label>
+                <div class="col-sm-8">
+                    @Model.Description
+                </div>
+                <label class="col-sm-3">
+                    Giá:
+                </label>
+                <div class="col-sm-8">
+                    @string.Format("{0:N0} đ", Model.Price)
+                </div>
+            </div>
+            <br />
+            <form asp-action="DeleteToy">
+                <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                <input type="submit" name="CancelButton" value="Hủy" class="btn btn-danger" />
+            </form>
+        </div>
+    </div>
+</div>

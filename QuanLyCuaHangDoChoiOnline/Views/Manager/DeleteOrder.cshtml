@@ -1,0 +1,111 @@
+﻿@using QuanLyCuaHangDoChoiOnline.Models
+@model dynamic
+
+@{
+    ViewData["Title"] = "DeleteOrder";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<h1>Xóa đơn hàng</h1>
+
+<h3>Bạn có muốn xóa đơn hàng này không?</h3>
+<div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2"></th>
+                            <th class="col-md-6">
+                                Tên đồ chơi
+                            </th>
+                            <th class="col-md-4">
+                                Số lượng
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in @Model.orderItem)
+                        {
+                            <tr>
+                                @foreach (var toy in Model.lstToy)
+                                {
+                                    if (item.ToyID == toy.ToyID)
+                                    {
+                                        <td>
+                                            <span class="image">
+                                                <img src="/images/@toy.Image" height="120" width="110" alt="" />
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @toy.ToyName
+                                        </td>
+                                    }
+                                }
+                                <td>
+                                    @item.Quantity
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <label class="col-sm-5">
+                    Mã đơn hàng:
+                </label>
+                <div class="col-sm-3">
+                    @Model.infoOrder.InfoOrderID
+                </div>
+                <label class="col-sm-5">
+                    Tên:
+                </label>
+                <div class="col-sm-5">
+                    @Model.infoOrder.Name
+                </div>
+                <label class="col-sm-5">
+                    Email:
+                </label>
+                <div class="col-sm-3">
+                    @Model.infoOrder.Email
+                </div>
+                <label class="col-sm-5">
+                    Số điện thoại:
+                </label>
+                <div class="col-sm-3">
+                    @Model.infoOrder.Phone
+                </div>
+                <label class="col-sm-5">
+                    Địa chỉ:
+                </label>
+                <div class="col-sm-6">
+                    @Model.infoOrder.Address
+                </div>
+                <label class="col-sm-5">
+                    Tổng tiền:
+                </label>
+                <div class="col-sm-6">
+                    @string.Format("{0:N0} đ", Model.infoOrder.TotalPrice)
+                </div>
+                <label class="col-sm-5">
+                    Trạng thái:
+                </label>
+                <div class="col-sm-5">
+                    @Model.infoOrder.Status
+                </div>
+            </div>
+            <form asp-action="DeleteOrder">
+                <input hidden name="InfoOrderID" value="@Model.infoOrder.InfoOrderID" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </form>
+        </div>
+    </div>
+
+    <a asp-action="ManagerOrder">Quay lại danh sách</a>
+
+</div>

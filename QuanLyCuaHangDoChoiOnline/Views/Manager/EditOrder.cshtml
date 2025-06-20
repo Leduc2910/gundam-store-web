@@ -1,0 +1,103 @@
+﻿@using QuanLyCuaHangDoChoiOnline.Models
+@model dynamic
+
+@{
+    ViewData["Title"] = "EditOrder";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+
+<h3>Chỉnh sửa đơn hàng</h3>
+<hr />
+<div class="row">
+    <div class="col-sm-8">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-md-2"></th>
+                        <th class="col-md-6">
+                            Tên đồ chơi
+                        </th>
+                        <th class="col-md-4">
+                            Số lượng
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in @Model.orderItem)
+                    {
+                        <tr>
+                            @foreach (var toy in Model.lstToy)
+                            {
+                                if (item.ToyID == toy.ToyID)
+                                {
+                                    <td>
+                                        <span class="image">
+                                            <img src="/images/@toy.Image" height="120" width="110" alt="" />
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @toy.ToyName
+                                    </td>
+                                }
+                            }
+                            <td>
+                                @item.Quantity
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <form asp-action="EditOrder">
+            <div class="form-group">
+                <label for="InfoOrderID" class="control-label">Mã đơn hàng</label>
+                <input name="InfoOrderID" class="form-control" value="@Model.infoOrder.InfoOrderID"/>
+            </div>
+            <div class="form-group">
+                <label for="OrderID" class="control-label">OrderID</label>
+                <input class="form-control" value="@Model.infoOrder.OrderID" disabled />
+                <input hidden name="OrderID" class="form-control" value="@Model.infoOrder.OrderID" />
+            </div>
+            <div class="form-group">
+                <label for="Name" class="control-label">Họ tên</label>
+                <input name="Name" class="form-control" value="@Model.infoOrder.Name"/>
+            </div>
+            <div class="form-group">
+                <label for="Email" class="control-label">Email</label>
+                <input name="Email" class="form-control" value="@Model.infoOrder.Email"/>
+            </div>
+            <div class="form-group">
+                <label for="Phone" class="control-label">Số điện thoại</label>
+                <input name="Phone" class="form-control" value="@Model.infoOrder.Phone"/>
+            </div>
+            <div class="form-group">
+                <label for="Address" class="control-label">Địa chỉ</label>
+                <input name="Address" class="form-control" value="@Model.infoOrder.Address"/>
+            </div>
+            <div class="form-group">
+                <label for="TotalPrice" class="control-label">Tổng tiền</label>
+                <input name="TotalPrice" class="form-control" value="@Model.infoOrder.TotalPrice"/>
+            </div>
+            <div class="form-group">
+                <label for="Status" class="control-label">Trạng thái</label>
+                <input class="form-control" class="form-control" value="@Model.infoOrder.Status" disabled />
+
+                <input hidden name="Status" class="form-control" value="@Model.infoOrder.Status" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ManagerOrder">Quay lại danh sách</a>
+</div>
+

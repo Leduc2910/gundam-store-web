@@ -1,0 +1,32 @@
+﻿@using QuanLyCuaHangDoChoiOnline.Models
+@model dynamic
+
+@{
+    ViewData["Title"] = "OrdersList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Danh sách đơn hàng</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã đơn hàng</th>
+            <th>Số tiền</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model.lstOrder)
+        {
+            <tr>
+                <td>@item.InfoOrderID</td>
+                <td>@string.Format("{0:N0} đ", item.TotalPrice)</td>
+                <td>@item.Status</td>
+                <td>
+                    <a asp-action="InfoOrderDetail" asp-route-ID="@item.InfoOrderID">Chi tiết đơn hàng</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

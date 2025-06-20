@@ -1,0 +1,73 @@
+﻿@using QuanLyCuaHangDoChoiOnline.Models
+@model dynamic
+
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Giỏ hàng</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="col-md-2"></th>
+            <th class="col-md-4">
+                Tên đồ chơi
+            </th>
+            <th class="col-md-1">
+                Số lượng
+            </th>
+            <th class="col-md-2">
+                Tổng giá
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var item in Model.orderItem)
+        {
+        <tr>
+            @foreach (var toy in Model.lstToy)
+            {
+                if (item.ToyID == toy.ToyID)
+                {
+                    <td>
+                        <span class="image">
+                            <img src="/images/@toy.Image" height="120" width="110" alt="" />
+                        </span>
+                    </td>
+                    <td>
+                        @toy.ToyName
+                    </td>
+                }
+            }
+            <td>
+                <form asp-action="EditItem">
+                    <input hidden type="text" name="ItemID" value="@item.ItemID" />
+                    <input name="Quantity" value="@item.Quantity" disabled />
+                    <br />
+                    <input type="submit" name="add" value="+" class="btn" style="margin-top:10px"/> |
+                     <input type="submit" name="sub" value="-" class="btn" style="margin-top:10px" />
+                </form>
+            </td>
+            <td>
+                    @string.Format("{0:N0} đ", item.TotalPrice)
+            </td>
+            <td>
+                    <a asp-controller="Order" asp-action="DeleteItem" asp-route-ID="@item.ItemID">Xóa</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-md-9"></div>
+    <div class="col-md-3">
+        <div class="field">
+            <label for="price">Giá</label>
+            <input type="text" name="price" placeholder="TotalPrice" value="@string.Format("{0:N0}", Model.orders.OrderPrice)" disabled>
+        </div>
+        <br />
+        <a class="button" asp-action="Checkout">Đặt hàng</a>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ToyJoy</title>
+    <link rel="shortcut icon" href="~/images/logo1.png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+    <link href="~/css/main.css" rel="stylesheet" asp-append-version="true" />
+    <link asp-append-version="true" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <noscript><link rel="stylesheet" href="~/css/noscript.css" asp-append-version="true"/></noscript>
+</head>
+<body class="is-preload">
+    <div id="wrapper">
+        <header id="header">
+            <div class="inner">
+                <div style="display:flex">
+                    <a asp-controller="Home" asp-action="Index" class="logo" style="width:700px">
+                        <img src="~/images/logo1.png" width="20%" /><span class="title">Gundam Online Shop</span>
+                    </a>
+                    <div class="container" style="display: -webkit-inline-box;margin-top:7px">
+                        <form class="search-bar" asp-controller="Toy" asp-action="ToyName" method="get">
+                            <input type="text" name="name" placeholder="Tìm kiếm sản phẩm..." value="@Context.Request.Query["name"]" />
+                            <button type="submit" class="fa-solid fa-magnifying-glass"></button>
+                            </form>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i> Trang chủ</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" asp-controller="Toy" asp-action="Index" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-list"></i> Danh mục</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-controller="Toy" asp-action="Index">Tất cả</a>
+                                    @foreach (var item in Model.toytypeNAV)
+                                    {
+                                        <a class="dropdown-item" asp-controller="Toy" asp-action="ToyType" asp-route-ID="@item.ToyTypeID">@item.ToyTypeID</a>
+                                    }
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="About"><i class="fa-solid fa-circle-info"></i> Giới thiệu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Contact"><i class="fa-solid fa-phone"></i> Liên hệ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li style="padding-top:32px"><a href="#menu">Menu</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <nav id="menu">
+            <h2>Menu</h2>
+            <h4>@User.Identity.Name</h4>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index" class="active">Trang chủ</a></li>
+                @if (this.User.IsInRole("Admin") || this.User.IsInRole("SuperAdmin"))
+                {
+                    <li><a asp-controller="Manager" asp-action="Index">Quản lý</a></li>
+
+                }
+
+                @if (User.Identity.Name != null)
+                {
+                    <li><a asp-controller="Order" asp-action="Cart">Giỏ hàng</a></li>
+                    <li><a asp-controller="Order" asp-action="OrdersList">Đơn hàng</a></li>
+                    <li><a asp-controller="Account" asp-action="Logout">Đăng xuất</a></li>
+
+                }
+                else
+                {
+                    <li><a asp-controller="Account" asp-action="Login">Đăng nhập</a></li>
+                }
+
+            </ul>
+        </nav>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        <footer id="footer">
+            <div class="inner">
+                <ul class="copyright">
+                    <li>Copyright © 2023 ToyJoy Store Online</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jquery.scrolly.min.js"></script>
+    <script src="~/js/jquery.scrollex.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

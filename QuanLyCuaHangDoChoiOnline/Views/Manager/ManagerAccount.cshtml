@@ -1,0 +1,50 @@
+﻿@model IEnumerable<QuanLyCuaHangDoChoiOnline.Models.Account>
+
+@{
+    ViewData["Title"] = "ManagerAccount";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<h1>Quản lý tài khoản</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Quyền
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.UserName
+            </td>
+            <td>
+                @item.FullName
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Authority
+            </td>
+            <td>
+                <a asp-action="EditAccount" asp-route-username="@item.UserName">Sửa</a> |
+                <a asp-action="DetailAccount" asp-route-username="@item.UserName">Chi tiết</a> |
+                <a asp-action="DeleteAccount" asp-route-id="@item.UserName">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

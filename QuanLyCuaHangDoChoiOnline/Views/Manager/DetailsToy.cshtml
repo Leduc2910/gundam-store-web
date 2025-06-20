@@ -1,0 +1,71 @@
+﻿@using QuanLyCuaHangDoChoiOnline.Models
+@model dynamic
+
+@{
+    ViewData["Title"] = "DetailsToy";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<div>
+    <h2>chi tiết đồ chơi</h2>
+    <hr />
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="/images/@Model.toy.Image" class="img-fluid" alt="">
+        </div>
+        <div class="col-sm-8">
+            <div class="row">
+                <label class="col-sm-3">
+                    Mã sản phẩm:
+                </label>
+                <div class="col-sm-9">
+                    @Model.toy.ToyID
+                </div>
+                <label class="col-sm-3">
+                    Tên sản phẩm:
+                </label>
+                <div class="col-sm-9">
+                    @Model.toy.ToyName
+                </div>
+                <label class="col-sm-3">
+                    Loại:
+                </label>
+                <div class="col-sm-9">
+                    @Model.toyType.ToyTypeName
+                </div>
+                <label class="col-sm-3">
+                    Nhà sản xuất:
+                </label>
+                <div class="col-sm-9">
+                    @Model.toy.Brand
+                </div>
+                <label class="col-sm-3">
+                    Giá:
+                </label>
+                <div class="col-sm-9">
+                    @Model.toy.Price
+                </div>
+                <label class="col-sm-3">
+                    Số lượng:
+                </label>
+                <div class="col-sm-9">
+                    @Model.toy.Quantity
+                </div>
+                <label class="col-sm-3">
+                    Số lượng đặt hàng:
+                </label>
+                <div class="col-sm-9">
+                    @Model.toy.OrderedQuantity
+                </div>
+                <label class="col-sm-3">
+                    Mô tả:
+                </label>
+                <div class="col-sm-9">
+                    @Model.toy.Description
+                </div>
+            </div>
+        </div>
+        <a asp-action="ManagerToy">Quay lại danh sách</a>
+    </div>
+</div>
+
