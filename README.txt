@@ -1,4 +1,4 @@
-#Gundam Store Web
+# Gundam Store Web
 
 **Gundam Store Web** là một website thương mại điện tử chuyên cung cấp và phân phối các sản phẩm **Gunpla** (mô hình Gundam lắp ráp) dành cho nhiều nhóm người dùng như **khách hàng**, **nhân viên**, và **quản lý**.  
 Dự án được xây dựng với mục tiêu mang đến trải nghiệm mua sắm tiện lợi, quản lý hiệu quả và giao diện thân thiện.
