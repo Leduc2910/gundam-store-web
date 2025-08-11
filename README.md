@@ -4,7 +4,7 @@
 Dự án được xây dựng với mục tiêu mang đến trải nghiệm mua sắm tiện lợi, quản lý hiệu quả và giao diện thân thiện.
 
 ## 📺 Video Demo
-[![Xem video demo trên YouTube](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
+[![Xem video demo trên YouTube](https://img.youtube.com/vi/-rpL-1bBtCc/maxresdefault.jpg)](https://www.youtube.com/watch?v=-rpL-1bBtCc)
 
 ## 🎯 Mục tiêu
 - Cung cấp nền tảng trực tuyến cho người yêu thích Gunpla có thể dễ dàng tìm kiếm, mua sắm sản phẩm.
